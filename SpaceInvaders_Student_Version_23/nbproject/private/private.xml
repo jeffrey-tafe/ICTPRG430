@@ -3,12 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/dev/java/SpaceInvaders_Student_Version_23/src/model/GameSettings.java</file>
-            <file>file:/C:/dev/java/SpaceInvaders_Student_Version_23/src/model/UserDetails.java</file>
-            <file>file:/C:/dev/java/SpaceInvaders_Student_Version_23/src/testHarnesses/GameDetailsTest.java</file>
-            <file>file:/C:/dev/java/SpaceInvaders_Student_Version_23/src/testHarnesses/GameSettingsTest.java</file>
-            <file>file:/C:/dev/java/SpaceInvaders_Student_Version_23/src/model/GameDetails.java</file>
-            <file>file:/C:/dev/java/SpaceInvaders_Student_Version_23/src/testHarnesses/UserDetailsTest.java</file>
+            <file>file:/C:/dev/java/ICTPRG430/SpaceInvaders_Student_Version_23/src/model/ShipEntity.java</file>
         </group>
     </open-files>
 </project-private>
