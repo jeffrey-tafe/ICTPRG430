@@ -80,10 +80,21 @@ public class BorderEntity extends Entity {
     //toString (no equals)
     @Override
     public String toString() {
-        //TODO
-        StringBuilder toStringBuilder = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append("\n[");
+        sb.append("\n\t");
+        sb.append("ID: ");
+        sb.append(this.id);
+        sb.append("\n\t");
+        sb.append("Width: ");
+        sb.append(this.width);
+        sb.append("\n\t");
+        sb.append("Height: ");
+        sb.append(this.height);
+        sb.append("\n]");
 
-        return toStringBuilder.toString();
+        return sb.toString();
     }
 
     /**

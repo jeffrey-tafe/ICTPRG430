@@ -208,6 +208,7 @@ public class GameDetails implements Serializable {
         sb.append("\n\t");
         sb.append("newHighScore: ");
         sb.append(this.newHighScore);
+        sb.append("\n]");
         return sb.toString();
     }
 
