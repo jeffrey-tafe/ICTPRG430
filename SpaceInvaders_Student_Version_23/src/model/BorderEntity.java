@@ -27,24 +27,50 @@ public class BorderEntity extends Entity {
     private int height;
     private String id;
 
-    //no args constructors
+    /**
+     * no args constructor
+     */
     public BorderEntity() {
         this(DEFAULT_ID);
     }
 
+    /**
+     *  id only constructor
+     * @param id : String
+     */
     public BorderEntity(String id) {
         this(id, DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 
+    /**
+     *  id, width and height constructor
+     * @param id : String
+     * @param width : int
+     * @param height : int
+     */
     public BorderEntity(String id, int width, int height) {
         this(id, DEF_X, DEF_Y, width, height);
     }
 
+    /**
+     * xPos, yPos, width and height constructor
+     * @param initalXPos : int
+     * @param initialYPos : int
+     * @param width : int
+     * @param height : int
+     */
     public BorderEntity(int initalXPos, int initialYPos, int width, int height) {
         this(DEFAULT_ID, initalXPos, initialYPos, width, height);
     }
 
-    //all args constructor
+    /**
+     * all args constructor
+     * @param id : String
+     * @param initalXPos : int
+     * @param initialYPos : int
+     * @param width : int
+     * @param height : int
+     */
     public BorderEntity(String id, int initalXPos, int initialYPos, int width, int height) {
         super(DEF_REF_TO_SPRITE_IMAGE_FILE, initalXPos, initialYPos);
         this.id = id;
@@ -53,31 +79,59 @@ public class BorderEntity extends Entity {
     }
 
     //Getters and Setters
+
+    /**
+     * getWidth
+     * @return width : int
+     */
     public int getWidth() {
         return this.width;
     }
 
+    /**
+     * setWidth
+     * @param width : int
+     */
     public void setWidth(int width) {
         this.width = width;
     }
 
+    /**
+     * getHeight
+     * @return height : int
+     */
     public int getHeight() {
         return this.height;
     }
 
+    /**
+     * setHeight
+     * @param height : int
+     */
     public void setHeight(int height) {
         this.height = height;
     }
 
+    /**
+     * getId
+     * @return id : int
+     */
     public String getId() {
         return this.id;
     }
 
+    /**
+     * setId
+     * @param id : int
+     */
     public void setId(String id) {
         this.id = id;
     }
 
-    //toString (no equals)
+    /**
+     * toString Override
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -107,6 +161,10 @@ public class BorderEntity extends Entity {
         return new Rectangle(this.getX(), this.getY(), this.width, this.height);
     }
 
+    /**
+     *
+     * @param g
+     */
     @Override
     public void draw(Graphics g) {
 
