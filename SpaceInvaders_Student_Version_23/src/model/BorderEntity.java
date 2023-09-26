@@ -10,7 +10,7 @@ import java.awt.Rectangle;
  *
  * @author sruiz
  * @author jruiz 
- * @author ADD YOUR NAME HERE
+ * @author Jeffrey Smith
  * @version 1.0 initial version
  * @version 2.0 updated to get better consistency in the order of parameters
  *
@@ -50,7 +50,7 @@ public class BorderEntity extends Entity {
 
     //all args constructor
     public BorderEntity(String id, int initalXPos, int initialYPos, int width, int height) {
-        //TODO
+        super(null, initalXPos, initialYPos);
 
     }
 
