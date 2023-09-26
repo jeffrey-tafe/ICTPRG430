@@ -27,13 +27,19 @@ public class GameDetailsTest {
         GameSettings gameSet1 = new GameSettings(500, 2000);
         gd1.setUserDetails(user1);
         gd1.setGameSettings(gameSet1);
+        gd1.setHighScore(123456789);
+        gd1.setNewHighScore(true);
+        gd1.setScore(123456789);
+        gd1.setShipsDestroyed(54);
+        gd1.setShotsFired(700);
+        
         System.out.println("UserDetails: " + gd1.getUserDetails());
         System.out.println("GameSettings: " + gd1.getGameSettings());
         System.out.println("highScore: " + gd1.getHighScore());
         System.out.println("score: " + gd1.getScore());
         System.out.println("shipsDestroyed: " + gd1.getShipsDestroyed());
         System.out.println("shotsFired: " + gd1.getShotsFired());
-        System.out.println("isNewHighScore" + gd1.isNewHighScore());
+        System.out.println("isNewHighScore: " + gd1.isNewHighScore());
         
         System.out.println("\nTesting two arg constructor");
         UserDetails user2 = new UserDetails("jeffrey.smith", "JavaHurtsMyHead");
