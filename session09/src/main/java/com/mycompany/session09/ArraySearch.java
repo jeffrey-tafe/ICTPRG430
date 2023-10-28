@@ -111,31 +111,22 @@ public class ArraySearch {
 
         int valuesFoundAt[];
         int valuesFoundCount = 0;
-        int elementCount;
+        int elementCount = inputArray.length;
 
-        // Get the count of total items in array
-        elementCount = inputArray.length;
+        // Create valuesFoundAt array at full size of inputArray
+        valuesFoundAt = new int[elementCount];
 
-        // Get the count of instances of target in array
-        for (int i = 0; i < elementCount; i++) {
-            if (inputArray[i] == target) {
-                valuesFoundCount++;
-            }
-        }
-
-        // Set size of valuesFoundAt array to count
-        valuesFoundAt = new int[valuesFoundCount];
-
-        // Reset valuesFoundCount to 0 to use as index for valuesFoundAt
-        valuesFoundCount = 0;
-
+        // Get count of target in inputArray
         for (int i = 0; i < elementCount; i++) {
             if (inputArray[i] == target) {
                 valuesFoundAt[valuesFoundCount] = i;
                 valuesFoundCount++;
             }
         }
-        return valuesFoundAt;
+
+        int result[] = new int[valuesFoundCount];
+        System.arraycopy(valuesFoundAt, 0, result, 0, valuesFoundCount);
+        return result;
     }
 
     public static String printFinalValueAllResult(int[] inputArray, int target) {
