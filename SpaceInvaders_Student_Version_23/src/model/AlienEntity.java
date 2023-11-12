@@ -18,7 +18,7 @@ public class AlienEntity extends AnimatedEntity implements EntityEventListener {
   static List<String> alienAnimationSpritesList = null;
   /** Sound the alien makes when it is dying */
   static Clip soundWhenDying;
-  /** The speed at which the alient moves horizontally */
+  /** The speed at which the alien moves horizontally */
   private static final double MOVE_SPEED = 100;
   /** The initial image to be used for the alien */
   private static String ALIEN_SPRITE = "newalien1.gif";
@@ -30,8 +30,8 @@ public class AlienEntity extends AnimatedEntity implements EntityEventListener {
    *
    * @param game The game in which this entity is being created
    * @param ref The sprite which should be displayed for this alien
-   * @param x The intial x location of this alien
-   * @param y The intial y location of this alient
+   * @param x The initial x location of this alien
+   * @param y The initial y location of this alien
    */
   public AlienEntity(int x, int y) {
     super(ALIEN_SPRITE, x, y);

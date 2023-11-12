@@ -21,8 +21,8 @@ import java.sql.SQLException;
  */
 public class GameSettings implements Serializable {
 
-    public static final double DEFAULT_MOVE_SPEED = 300;
-    public static final int DEFAULT_FIRING_INTERVAL = 700;
+    public static final double MOVE_SPEED = 300;
+    public static final int FIRING_INTERVAL = 700;
 
     // Instance variables
     private double moveSpeed;
@@ -42,7 +42,7 @@ public class GameSettings implements Serializable {
      *  No argument constructor
      */
     public GameSettings() {
-        this(DEFAULT_MOVE_SPEED, DEFAULT_FIRING_INTERVAL);
+        this(MOVE_SPEED, FIRING_INTERVAL);
     }
 
     /**

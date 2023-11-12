@@ -13,7 +13,7 @@ package model;
  *
  * @author Santi Ruiz
  * @author Julie Ruiz
- * @author ADD YOUR NAME HERE
+ * @author Jeffrey Smith
  * @version 1.0 - Initial Version
  * @version 2.0 - Changed collision checking to use new version of Entity Collision check
  */
@@ -33,7 +33,7 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
     public static final int MAX_SIZE = 100;
 
     /**
-     * The entities in the array. Make it protected to allow sub-classes access but noone else.
+     * The entities in the array. Make it protected to allow sub-classes access but no one else.
      */
     protected Entity[] entities;
     /**
@@ -45,14 +45,15 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
     protected int numRemoveEntities;
 
     /**
-     * Sets up the array entities and removeEntities of MAX_SIZE set numEntires to 0
+     * Sets up the array entities and removeEntities of MAX_SIZE set numEntities to 0
      *
      * @param entities
      * @param removeEntities
      */
     public EntityListArray() {
-        //TODO
-
+        this.entities = new Entity[MAX_SIZE];
+        this.removeEntities = new Entity[MAX_SIZE];
+        this.numEntities = 0;
     }
 
     /**
@@ -60,7 +61,9 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
      */
     @Override
     public void clear() {
-        //TODO
+        this.entities = new Entity[MAX_SIZE];
+        this.removeEntities = new Entity[MAX_SIZE];
+        this.numEntities = 0;
     }
 
     /**
@@ -70,7 +73,10 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
      */
     @Override
     public void add(Entity e) {
-        //TODO
+
+        this.entities[this.numEntities] = e;
+        this.numEntities++;
+
         // We make sure the array gets told about events on each of its entities
         e.addEntityEventListener(this);
     }
@@ -86,7 +92,29 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
         //Increase the speed of all members of the array by percentIncr
         //using setHorizontalMovement and setVerticalMovement
 
-        //TODO
+        for (int i = 0; i < this.numEntities; i++) {
+
+            // If space is empty, skip to next loop iteration
+            if (entities[i] == null) {
+                continue;
+            }
+
+            // Create shorthand reference to entity
+            Entity e = entities[i];
+
+            // Get old speeds
+            double oldSpeedX = e.getHorizontalMovement();
+            double oldSpeedY = e.getVerticalMovement();
+
+            // Get new speeds
+            double newSpeedX = oldSpeedX + (oldSpeedX * (percentIncr / 100));
+            double newSpeedY = oldSpeedY + (oldSpeedY * (percentIncr / 100));
+
+            // Set updated speeds
+            e.setHorizontalMovement(newSpeedX);
+            e.setVerticalMovement(newSpeedY);
+        }
+
     }
 
     /**
@@ -97,17 +125,24 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
     @Override
     public void updateState(long delta) {
         //loop through each entity in the array entities and updateState
-        //TODO
+        for (int i = 0; i < this.numEntities; i++) {
+            // Call the updatState method from the entity class
+            this.entities[i].updateState(delta);
+        }
 
         // If an entity needs to be removed from the array
         // then it would have been added to the removeEntities array and now needs to be removed.
         // Loop through each entity in the removeEntities array and remove the entity from the current
         // EntitListArray object by calling this.remove
-        //TODO
+        for (int i = 0; i < this.numRemoveEntities; i++) {
+            // Call the updatState method from the entity class
+            this.remove(this.removeEntities[i]);
+        }
         
         // clear the removeEntities array by creating a new array of removeEntities
         this.removeEntities = new Entity[MAX_SIZE];
         this.numRemoveEntities = 0;
+
     }
 
     /**
@@ -118,8 +153,10 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
     @Override
     public void draw(Graphics2D g) {
         //loop through each entity in the array entities and draw
-        //TODO
-
+        for (int i = 0; i < this.numEntities; i++) {
+            // Call the draw method from the entity class
+            this.entities[i].draw(g);
+        }
     }
 
     /**
@@ -130,7 +167,15 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
     @Override
     public void moveAndDraw(long delta, Graphics2D g) {
         //loop through each entity in the array entities and updateState and draw
-        //TODO
+
+        // Iterate through entity array
+        for (int i = 0; i < this.numEntities; i++) {
+            // Update the entity state
+            this.entities[i].updateState(delta);
+
+            // Call the draw method from the entity class
+            this.entities[i].draw(g);
+        }
     }
 
     /**
@@ -146,7 +191,13 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
         //if one of the entities in the list collides with the entity 'other'
         //return the entity it collides with.
         //Note: need to make use of the Entity class collidesWith method
-        //TODO
+        // Iterate through entity array
+        for (int i = 0; i < this.numEntities; i++) {
+            if (entities[i].collidesWith(other)) {
+                return entities[i];
+            }
+        }
+
         return null;
     }
 
@@ -159,7 +210,9 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
     public void addEntityEventListener(EntityEventListener l) {
 
         //loop through each entity in the array entities and addEntityEventListener l
-        //TODO
+        for (int i = 0; i < this.numEntities; i++) {
+            entities[i].addEntityEventListener(l);
+        }
     }
 
     /**
@@ -180,10 +233,17 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
         //loop through each entity in the array entities
         //if the entity is not equal to e then add the entity to the newArray
         //and increment numNewEntries
-        //TODO
+        for (int i = 0; i < this.numEntities; i++) {
+            if(!this.entities[i].equals(e)) {
+                newArray[newNumEntities] = this.entities[i];
+                newNumEntities++;
+            }
+        }
+        
         //set the entities array to the newArray
         //set numEntities to newNumEntities
-        //TODO
+        this.entities = newArray;
+        this.numEntities = newNumEntities;
     }
 
     /**

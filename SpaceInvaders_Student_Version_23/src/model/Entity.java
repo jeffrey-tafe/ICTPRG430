@@ -27,7 +27,7 @@ import model.events.EntityMoveEvent;
  * @author Santi Ruiz based on work by Kevin Glass
  * @author Julie Ruiz
  * @version 1.0 Initial version
- * @version 2.0 Changed collision check to return boolean and not detect collision with itself as a collision
+ * @version 2.0 Changed collision check to return Boolean and not detect collision with itself as a collision
  */
 public abstract class Entity implements EntityEventListener {
 
