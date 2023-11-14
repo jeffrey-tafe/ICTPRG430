@@ -29,7 +29,9 @@ import model.events.EntityMoveEvent;
  */
 public class EntityListArray implements EntityListInterface, EntityEventListener {
 
-    //set constant MAX_SIZE 100
+    /**
+     * set constant MAX_SIZE 100
+     */
     public static final int MAX_SIZE = 100;
 
     /**
@@ -41,14 +43,19 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
      */
     protected Entity[] removeEntities;
 
+    /**
+     * The number of entities in the entities array
+     */
     protected int numEntities;
+
+    /**
+     * The number of entities in the removeEntities array
+     */
     protected int numRemoveEntities;
 
     /**
      * Sets up the array entities and removeEntities of MAX_SIZE set numEntities to 0
      *
-     * @param entities
-     * @param removeEntities
      */
     public EntityListArray() {
         this.entities = new Entity[MAX_SIZE];
@@ -74,6 +81,7 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
     @Override
     public void add(Entity e) {
 
+        // Insert new entity at numEntities place then increment count
         this.entities[this.numEntities] = e;
         this.numEntities++;
 
@@ -280,6 +288,12 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
     /*
         Registers an entity for removal next time the state of the list is updated
      */
+
+    /**
+     *
+     * @param e
+     */
+
     public void registerEntityForRemoval(Entity e) {
         removeEntities[numRemoveEntities] = e;
         numRemoveEntities++;
@@ -287,19 +301,36 @@ public class EntityListArray implements EntityListInterface, EntityEventListener
 
     // Entity Event Handling Methods
     // By default no Action is taken by the array for entity events
+
+    /**
+     *
+     * @param e
+     */
     @Override
     public void collisionHasOccured(EntityHitEvent e) {
     }
 
+    /**
+     *
+     * @param e
+     */
     @Override
     public void entityMoved(EntityMoveEvent e) {
     }
 
+    /**
+     *
+     * @param e
+     */
     @Override
     public void entityDied(EntityDiedEvent e) {
         this.remove((Entity) e.getSource());
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         String result = "";
