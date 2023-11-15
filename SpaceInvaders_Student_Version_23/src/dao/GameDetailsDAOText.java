@@ -125,6 +125,78 @@ public class GameDetailsDAOText extends SpaceInvadersDAOText {
             //EndWhile
             //
             //TODO
+            // Get details from gameDetails object
+            String userNameInGameDetails = gameDetails.getUserDetails().getUserName();
+            double moveSpeedInGameDetails = gameDetails.getGameSettings().getMoveSpeed();
+            int firingIntervalInGameDetails = gameDetails.getGameSettings().getFiringInterval();
+
+            // Loop through each line in the CSV file
+            while ((aLine = userHighScoresFile.readLine()) != null);
+            {
+
+                // Extract values from the file
+                StringTokenizer scoreTok = new StringTokenizer(aLine, ",");
+                userName = scoreTok.nextToken();
+                moveSpeed = new Double(scoreTok.nextToken()).doubleValue();
+                firingInterval = new Integer(scoreTok.nextToken()).intValue();
+                highScoreInFile = new Integer(scoreTok.nextToken()).intValue();
+
+                // If username, moveSpeed firingInterval equals values from GameDetails object
+                if (userName == userNameInGameDetails
+                    && moveSpeed == moveSpeedInGameDetails
+                    && firingInterval == firingIntervalInGameDetails) {
+
+                    // Set needToAddNewEntry false as we will be updating an existing entry or none at all
+                    needToAddNewEntry = false;
+
+                    // If the old high score is greater than the new high score
+                    if (highScoreInGameDetailsObject > highScoreInFile) {
+
+                        // Build string with the values and old score
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(userName);
+                        sb.append(",");
+                        sb.append(moveSpeed);
+                        sb.append(",");
+                        sb.append(firingInterval);
+                        sb.append(",");
+                        sb.append(highScoreInGameDetailsObject);
+
+                        // Write to the temp score file
+                        tempHighScoreFilePW.println(sb.toString());
+                    } else {
+                        // Build string with the values and new score
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(userName);
+                        sb.append(",");
+                        sb.append(moveSpeed);
+                        sb.append(",");
+                        sb.append(firingInterval);
+                        sb.append(",");
+                        sb.append(highScoreInFile);
+
+                        // Write to the temp score file
+                        tempHighScoreFilePW.println(sb.toString());
+                    }
+                    // Else this is a record with a new user, firingInterval or movingSpeed
+                } else {
+                    // Write the record to the temp file to include all other existing records
+                    // Build string with the values and new score
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(userName);
+                    sb.append(",");
+                    sb.append(moveSpeed);
+                    sb.append(",");
+                    sb.append(firingInterval);
+                    sb.append(",");
+                    sb.append(highScoreInFile);
+
+                    // Write to the temp score file
+                    tempHighScoreFilePW.println(sb.toString());
+                }
+
+            }
+
             //close the original fle ready to do the file naming changes
             userHighScoresFile.close();
         } catch (FileNotFoundException e) {
