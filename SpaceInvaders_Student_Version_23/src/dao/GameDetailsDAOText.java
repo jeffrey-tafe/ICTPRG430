@@ -14,6 +14,7 @@ package dao;
  * Company: TAFE SA</p>
  *
  * @author Santi Ruiz
+ * @author Jeffrey Smith
  * @version 1.0
  */
 import controller.MyLogger;
@@ -86,6 +87,7 @@ public class GameDetailsDAOText extends SpaceInvadersDAOText {
         int highScoreInGameDetailsObject;
         int highScoreInFile;
         File tempHighScoresFile;
+        boolean finished;
         //Handle to read existing highscores file
         BufferedReader userHighScoresFile;
         //Keep track of whether we need to add as a new entry
@@ -130,8 +132,14 @@ public class GameDetailsDAOText extends SpaceInvadersDAOText {
             double moveSpeedInGameDetails = gameDetails.getGameSettings().getMoveSpeed();
             int firingIntervalInGameDetails = gameDetails.getGameSettings().getFiringInterval();
 
+            //read first line
+            aLine = userHighScoresFile.readLine();
+            finished = (aLine == null);
+
+//            System.out.println("aLine = " + aLine);
+
             // Loop through each line in the CSV file
-            while ((aLine = userHighScoresFile.readLine()) != null);
+            while (!finished)
             {
 
                 // Extract values from the file
@@ -195,6 +203,9 @@ public class GameDetailsDAOText extends SpaceInvadersDAOText {
                     tempHighScoreFilePW.println(sb.toString());
                 }
 
+                //read next line
+                aLine = userHighScoresFile.readLine();
+                finished = (aLine == null);
             }
 
             //close the original fle ready to do the file naming changes
