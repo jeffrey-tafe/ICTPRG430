@@ -150,7 +150,7 @@ public class GameDetailsDAOText extends SpaceInvadersDAOText {
                 highScoreInFile = new Integer(scoreTok.nextToken()).intValue();
 
                 // If username, moveSpeed firingInterval equals values from GameDetails object
-                if (userName == userNameInGameDetails
+                if (userName.equals(userNameInGameDetails)
                     && moveSpeed == moveSpeedInGameDetails
                     && firingInterval == firingIntervalInGameDetails) {
 
